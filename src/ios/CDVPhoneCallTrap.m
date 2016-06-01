@@ -5,7 +5,29 @@
 #import <CoreTelephony/CTCall.h>
 
 
+
+-(void)applicationDidEnterBackground:(UIApplication *)application
+{
+    NSLog(@"YO Yo YO Yo YO!!!");
+
+    BOOL backgroundAccepted = [[UIApplication sharedApplication] setKeepAliveTimeout:600 handler:^{ [self backgroundHandler]; }];
+
+    if (backgroundAccepted) {
+        NSLog(@"VOIP backgrounding accepted");
+    }
+}
+
+-(void)applicationDidEnterBackground:(UIApplication *)application
+-(void)backgroundHandler {
+    NSLog(@"################ in the background!");
+}
+
 @implementation CDVPhoneCallTrap
+
+-(void)onPause:(CDVInvokedUrlCommand*)command
+{
+    NSLog(@"!!!!!!! IN BACKGROUND !!!!!!!!");
+}
 
 //handle calls
 -(void)onCall:(CDVInvokedUrlCommand*)command
